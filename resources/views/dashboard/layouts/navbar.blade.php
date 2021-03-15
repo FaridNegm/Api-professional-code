@@ -111,6 +111,31 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
+      
+      <!-- Languages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-globe"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">{{ trans('app.Languages') }}</span>
+          <div class="dropdown-divider"></div>
+
+          <ul>
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+              <li>
+                  <a href="#" class="dropdown-item">
+                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                      {{ $properties['native'] }}
+                    </a>
+                  </a>
+              </li>
+              <div class="dropdown-divider"></div>
+            @endforeach
+          </ul>
+        </div>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
           <i class="fas fa-th-large"></i>
